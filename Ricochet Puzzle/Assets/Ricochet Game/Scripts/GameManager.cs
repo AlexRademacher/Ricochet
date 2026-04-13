@@ -10,6 +10,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public bool checkTargets()
+    {
+        if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

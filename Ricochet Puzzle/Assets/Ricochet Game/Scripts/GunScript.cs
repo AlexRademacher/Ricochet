@@ -78,6 +78,9 @@ public class GunScript : MonoBehaviour
             currBounce = 0;
             laserLine.positionCount = 0;
             StartCoroutine(multiRayCast(new Ray(firePoint.position, firePoint.forward)));
+            if (GameObject.Find("GameManager").GetComponent<GameManager>().checkTargets()) {
+                Debug.Log("All targets shot");
+            }
         }
     }
 }
