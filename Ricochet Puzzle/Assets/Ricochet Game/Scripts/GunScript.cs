@@ -17,6 +17,9 @@ public class GunScript : MonoBehaviour
 
     private bool isFiring = false;
 
+    private int currShot = 0;
+    private int maxShot = 3;
+
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
@@ -24,7 +27,9 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        RayCast(new Ray(firePoint.position, firePoint.forward));
+        if (!isFiring) {
+            RayCast(new Ray(firePoint.position, firePoint.forward));
+        }
     }
 
     private void RayCast(Ray ray)
@@ -54,24 +59,20 @@ public class GunScript : MonoBehaviour
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce, hit.point);
             multiRayCast(new Ray(hit.point, reflectAngle));
+            yield return new WaitForSeconds(0.5f);
         }
         else
         {
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce, new UnityEngine.Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         isFiring = false;
     }
 
     public void Fire()
     {
         RaycastHit hit;
-
-        if (!(GameObject.Find("LevelManager").GetComponent<LevelData>().updateShots()))
-        {
-            return;
-        }
 
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range) && !isFiring)
         {
