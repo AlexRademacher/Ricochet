@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Splines;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class GunScript : MonoBehaviour
@@ -25,6 +26,9 @@ public class GunScript : MonoBehaviour
     private Vector3 startPos;
 
     private XRBaseInteractable interactable;
+    public GameObject bulletPrefab;
+    private SplineContainer splinePath;
+    private SplineAnimate splineAnim;
 
     void Start()
     {
@@ -81,7 +85,6 @@ public class GunScript : MonoBehaviour
         {
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce + 1, new Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
-            yield return new WaitForSeconds(2);
             isFiring = false;
         }
     }
@@ -99,6 +102,28 @@ public class GunScript : MonoBehaviour
             if (GameObject.Find("GameManager").GetComponent<GameManager>().checkTargets()) {
                 Debug.Log("All targets shot");
             }
+
+            GameObject bullet = Instantiate(bulletPrefab);
+            splinePath = bullet.GetComponent<SplineContainer>();
+            splineAnim = bullet.GetComponent<SplineAnimate>();
+
+            Spline spline = splinePath.Spline;
+            for (int i = 0; i < laserLine.positionCount; i++)
+            {
+                spline.Add(laserLine.GetPosition(i));           
+            }
+            spline.Closed = false;
+            
+            StartCoroutine(afterShoot(bullet));
         }
+    }
+
+    IEnumerator afterShoot(GameObject bullet)
+    {
+        splineAnim.Play();
+        yield return new WaitUntil(() => splineAnim.IsPlaying == false);
+
+        Destroy(bullet);
+        yield return new WaitForSeconds(1);
     }
 }
