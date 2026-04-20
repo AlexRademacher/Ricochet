@@ -1,14 +1,17 @@
 
 using System.Collections;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Splines;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class GunScript : MonoBehaviour
 {
     public Transform firePoint;
     private float range = 50f;
+
+    private float gunMoveRange = 1f;
 
     private int maxBounce = 3;
     private int currBounce = 0;
@@ -17,20 +20,42 @@ public class GunScript : MonoBehaviour
 
     private bool isFiring = false;
 
+    private int currShot = 0;
+    private int maxShot = 3;
+
+    private Vector3 startPos;
+
+    private XRBaseInteractable interactable;
+    public GameObject bulletPrefab;
+    private SplineContainer splinePath;
+    private SplineAnimate splineAnim;
+
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
+        interactable = GetComponent<XRBaseInteractable>();
+
+        startPos = transform.position;
     }
 
     void Update()
     {
-        RayCast(new Ray(firePoint.position, firePoint.forward));
+        if (Mathf.Abs(transform.position.x - startPos.x) > gunMoveRange || Mathf.Abs(transform.position.z - startPos.z) > gunMoveRange) {
+            interactable.enabled = false;
+            transform.position = startPos;
+            interactable.enabled = true;
+        }
+
+        if (!isFiring) {
+            RayCast(new Ray(firePoint.position, firePoint.forward));
+        }
     }
 
     private void RayCast(Ray ray)
     {
         RaycastHit hit;
 
+        laserLine.positionCount = 2;
         laserLine.SetPosition(0, firePoint.position);
 
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
@@ -47,40 +72,58 @@ public class GunScript : MonoBehaviour
     {
         isFiring = true;
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, range) && currBounce <= maxBounce + 1)
+        if (Physics.Raycast(ray, out hit, range) && currBounce <= maxBounce)
         {
             currBounce++;
-            var reflectAngle = UnityEngine.Vector3.Reflect(ray.direction, hit.normal);
+            var reflectAngle = Vector3.Reflect(ray.direction, hit.normal);
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce, hit.point);
-            multiRayCast(new Ray(hit.point, reflectAngle));
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(multiRayCast(new Ray(hit.point, reflectAngle)));
         }
         else
         {
             laserLine.positionCount = currBounce + 1;
-            laserLine.SetPosition(currBounce, new UnityEngine.Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
+            laserLine.SetPosition(currBounce + 1, new Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
+            isFiring = false;
         }
-        yield return new WaitForSeconds(1);
-        isFiring = false;
     }
 
     public void Fire()
     {
         RaycastHit hit;
 
-        if (!(GameObject.Find("LevelManager").GetComponent<LevelData>().updateShots()))
-        {
-            return;
-        }
-
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range) && !isFiring)
         {
             currBounce = 0;
-            laserLine.positionCount = 0;
+            laserLine.positionCount = 1;
+            laserLine.SetPosition(0, firePoint.position);
             StartCoroutine(multiRayCast(new Ray(firePoint.position, firePoint.forward)));
             if (GameObject.Find("GameManager").GetComponent<GameManager>().checkTargets()) {
                 Debug.Log("All targets shot");
             }
+
+            GameObject bullet = Instantiate(bulletPrefab);
+            splinePath = bullet.GetComponent<SplineContainer>();
+            splineAnim = bullet.GetComponent<SplineAnimate>();
+
+            Spline spline = splinePath.Spline;
+            for (int i = 0; i < laserLine.positionCount; i++)
+            {
+                spline.Add(laserLine.GetPosition(i));           
+            }
+            spline.Closed = false;
+            
+            StartCoroutine(afterShoot(bullet));
         }
+    }
+
+    IEnumerator afterShoot(GameObject bullet)
+    {
+        splineAnim.Play();
+        yield return new WaitUntil(() => splineAnim.IsPlaying == false);
+
+        Destroy(bullet);
+        yield return new WaitForSeconds(1);
     }
 }

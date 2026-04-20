@@ -285,19 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5756857935672646311}
-  range: 100
-  triggerAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ed1eb14c-2bec-4304-8950-fa65734a77f2
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+  bulletPrefab: {fileID: 2690414560654196490, guid: 847bf1154863fec49b797c6dc27a3909, type: 3}
 --- !u!120 &3838825066330722025
 LineRenderer:
   serializedVersion: 2
