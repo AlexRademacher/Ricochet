@@ -44,6 +44,8 @@ public class GunScript : MonoBehaviour
             interactable.enabled = false;
             transform.position = startPos;
             interactable.enabled = true;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
 
         if (!isFiring) {
@@ -58,13 +60,13 @@ public class GunScript : MonoBehaviour
         laserLine.positionCount = 2;
         laserLine.SetPosition(0, firePoint.position);
 
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
+        if (Physics.Raycast(firePoint.position, -1 * firePoint.forward, out hit, range))
         {
             laserLine.SetPosition(1, hit.point);
         }
         else
         {
-            laserLine.SetPosition(1, firePoint.position + firePoint.forward * range);
+            laserLine.SetPosition(1, firePoint.position + (-1  * firePoint.forward * range));
         }
     }
 
@@ -72,47 +74,50 @@ public class GunScript : MonoBehaviour
     {
         isFiring = true;
         RaycastHit hit;
+        laserLine.enabled = false;
         if (Physics.Raycast(ray, out hit, range) && currBounce <= maxBounce)
         {
             currBounce++;
             var reflectAngle = Vector3.Reflect(ray.direction, hit.normal);
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce, hit.point);
-            yield return new WaitForSeconds(0.5f);
             StartCoroutine(multiRayCast(new Ray(hit.point, reflectAngle)));
         }
         else
         {
             laserLine.positionCount = currBounce + 1;
-            laserLine.SetPosition(currBounce + 1, new Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
-            isFiring = false;
+            laserLine.SetPosition(currBounce + 2, new Vector3(laserLine.GetPosition(currBounce - 1).x, laserLine.GetPosition(currBounce - 1).y, laserLine.GetPosition(currBounce - 1).z));
         }
+        yield return new WaitForSeconds(0);
     }
 
     public void Fire()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range) && !isFiring)
+        if (Physics.Raycast(firePoint.position, -1 * firePoint.forward, out hit, range) && !isFiring)
         {
             currBounce = 0;
             laserLine.positionCount = 1;
             laserLine.SetPosition(0, firePoint.position);
-            StartCoroutine(multiRayCast(new Ray(firePoint.position, firePoint.forward)));
+            StartCoroutine(multiRayCast(new Ray(firePoint.position, -1 * firePoint.forward)));
             if (GameObject.Find("GameManager").GetComponent<GameManager>().checkTargets()) {
                 Debug.Log("All targets shot");
             }
 
-            GameObject bullet = Instantiate(bulletPrefab);
+            Time.timeScale = 0;
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z), firePoint.rotation);
             splinePath = bullet.GetComponent<SplineContainer>();
             splineAnim = bullet.GetComponent<SplineAnimate>();
 
             Spline spline = splinePath.Spline;
+            spline.Clear();
             for (int i = 0; i < laserLine.positionCount; i++)
             {
-                spline.Add(laserLine.GetPosition(i));           
+                spline.Add(new BezierKnot(laserLine.GetPosition(i)));           
             }
             spline.Closed = false;
+            Time.timeScale = 1;
             
             StartCoroutine(afterShoot(bullet));
         }
@@ -124,6 +129,8 @@ public class GunScript : MonoBehaviour
         yield return new WaitUntil(() => splineAnim.IsPlaying == false);
 
         Destroy(bullet);
-        yield return new WaitForSeconds(1);
+        isFiring = false;
+
+        laserLine.enabled = true;
     }
 }
