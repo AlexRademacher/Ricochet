@@ -544,18 +544,6 @@ PrefabInstance:
       value: GunPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7637545401796510135, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637545401796510135, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.036
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637545401796510135, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.095
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637545401796510135, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}

@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.63
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.036
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.095
+      value: 0.423
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
       propertyPath: m_LocalRotation.w
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 7637545401796510135}
-  bulletPrefab: {fileID: 2690414560654196490, guid: 847bf1154863fec49b797c6dc27a3909, type: 3}
+  bulletPrefab: {fileID: 621965872036132818, guid: 8e37866704ac2944aa7b9aae3f1952fe, type: 3}
 --- !u!120 &4803041911815341251
 LineRenderer:
   serializedVersion: 2
