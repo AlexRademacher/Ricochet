@@ -68,6 +68,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0076254215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.83647776
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -88,6 +120,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4803041911815341251}
   m_SourcePrefab: {fileID: 100100000, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+--- !u!4 &6690721669221073390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+  m_PrefabInstance: {fileID: 7959191425952949852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7112824005124397837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
@@ -115,7 +152,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -207,7 +244,7 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7402536730348357675}
         m_TargetAssemblyTypeName: GunScript, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 1
@@ -287,8 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada7fff60ff731942813406e6c17fa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 7637545401796510135}
-  bulletPrefab: {fileID: 2690414560654196490, guid: 847bf1154863fec49b797c6dc27a3909, type: 3}
+  firePoint: {fileID: 6690721669221073390}
+  bulletPrefab: {fileID: 621965872036132818, guid: 8e37866704ac2944aa7b9aae3f1952fe, type: 3}
 --- !u!120 &4803041911815341251
 LineRenderer:
   serializedVersion: 2
@@ -391,8 +428,3 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!4 &7637545401796510135 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
-  m_PrefabInstance: {fileID: 7959191425952949852}
-  m_PrefabAsset: {fileID: 0}
