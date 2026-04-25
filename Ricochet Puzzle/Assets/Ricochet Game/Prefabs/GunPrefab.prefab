@@ -326,6 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6690721669221073390}
   bulletPrefab: {fileID: 621965872036132818, guid: 8e37866704ac2944aa7b9aae3f1952fe, type: 3}
+  failureUI: {fileID: 4345383450330006127, guid: b4853d74900c29e47b45a9bcfca2ddff, type: 3}
+  successUI: {fileID: 2324950236820586465, guid: 03e9f840948533545a001c59590c8551, type: 3}
+  player: {fileID: 0}
 --- !u!120 &4803041911815341251
 LineRenderer:
   serializedVersion: 2

@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public bool checkTargets()
+    public void quitGame()
     {
-        if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
-        {
-            return true;
-        }
-        return false;
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     // Start is called before the first frame update
