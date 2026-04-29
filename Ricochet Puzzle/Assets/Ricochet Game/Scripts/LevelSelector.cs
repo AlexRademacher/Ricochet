@@ -14,7 +14,7 @@ public class LevelSelector : MonoBehaviour
     public void createLevelMenu()
     {
         GameObject levelUI = Instantiate(levelMenu);
-        levelMenu.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0,.5f);
+        levelMenu.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,1f,0);
         levelMenu.transform.rotation = player.transform.rotation;
 
         buttons = new Button[10];

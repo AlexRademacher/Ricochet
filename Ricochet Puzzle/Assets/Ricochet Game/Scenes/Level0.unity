@@ -1094,6 +1094,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 1762166581}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1762166583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1680501586, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1762166581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798658966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7402536730348357675, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1762166583}
     - target: {fileID: 7637545401796510135, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.63
@@ -1445,6 +1454,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 985205943}
+    - target: {fileID: 645087668733399562, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1762166583}
     - target: {fileID: 2523855580866100706, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
       propertyPath: m_Name
       value: GameManager
