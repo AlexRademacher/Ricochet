@@ -8,20 +8,19 @@ public class LevelSelector : MonoBehaviour
 {
     public GameObject player;
     public GameObject levelMenu;
-    private float distance = 2.0f;
+    private float distance = 1.0f;
 
     public Button[] buttons;
-
     public void createLevelMenu()
     {
         GameObject levelUI = Instantiate(levelMenu);
-        levelMenu.transform.position = player.transform.position + (player.transform.forward * distance);
+        levelMenu.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0,.5f);
         levelMenu.transform.rotation = player.transform.rotation;
 
         buttons = new Button[10];
         for (int i = 0; i < 10; i++)
         {
-            buttons[i] = levelMenu.transform.GetChild(i).GetComponent<Button>();
+            buttons[i] = levelUI.transform.GetChild(i).GetComponent<Button>();
         }
 
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);

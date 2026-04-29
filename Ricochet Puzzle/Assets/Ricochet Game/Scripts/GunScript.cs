@@ -124,7 +124,7 @@ public class GunScript : MonoBehaviour
     public GameObject failureUI;
     public GameObject successUI;
     public GameObject player;
-    private float distance = 2.0f;
+    private float distance = 1.0f;
 
     IEnumerator afterShoot(GameObject bullet)
     {
@@ -137,13 +137,13 @@ public class GunScript : MonoBehaviour
         if (currShot > maxShot)
         {
             GameObject failUI = Instantiate(failureUI);
-            failUI.transform.position = player.transform.position + (player.transform.forward * distance);
+            failUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0,0.5f);
             failUI.transform.rotation = player.transform.rotation;
         }
         else if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
         {
                 GameObject winUI = Instantiate(successUI);
-                winUI.transform.position = player.transform.position + (player.transform.forward * distance);
+                winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f);
                 winUI.transform.rotation = player.transform.rotation;
         }
         else
