@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GunScript : MonoBehaviour
 {
@@ -101,9 +102,6 @@ public class GunScript : MonoBehaviour
             laserLine.positionCount = 1;
             laserLine.SetPosition(0, firePoint.position);
             StartCoroutine(multiRayCast(new Ray(firePoint.position, -1 * firePoint.forward)));
-            if (GameObject.Find("GameManager").GetComponent<GameManager>().checkTargets()) {
-                Debug.Log("All targets shot");
-            }
 
             Time.timeScale = 0;
             GameObject bullet = Instantiate(bulletPrefab, new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z), firePoint.rotation);
@@ -123,14 +121,35 @@ public class GunScript : MonoBehaviour
         }
     }
 
+    public GameObject failureUI;
+    public GameObject successUI;
+    public GameObject player;
+    private float distance = 1.0f;
+
     IEnumerator afterShoot(GameObject bullet)
     {
         splineAnim.Play();
         yield return new WaitUntil(() => splineAnim.IsPlaying == false);
 
         Destroy(bullet);
-        isFiring = false;
+        currShot++;
 
-        laserLine.enabled = true;
+        if (currShot > maxShot)
+        {
+            GameObject failUI = Instantiate(failureUI);
+            failUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0,0.5f);
+            failUI.transform.rotation = player.transform.rotation;
+        }
+        else if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
+        {
+                GameObject winUI = Instantiate(successUI);
+                winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f);
+                winUI.transform.rotation = player.transform.rotation;
+        }
+        else
+        {
+            laserLine.enabled = true;
+            isFiring = false;
+        }
     }
 }

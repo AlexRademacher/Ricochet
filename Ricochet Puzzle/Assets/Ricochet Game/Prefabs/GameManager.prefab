@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7920642253661172897}
   - component: {fileID: 375922038450790515}
+  - component: {fileID: 645087668733399562}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +45,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f6025ebe41d5b47a99260573c36671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+--- !u!114 &645087668733399562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523855580866100706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd62a14caa1be64d9ce3eee08dbb9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  levelMenu: {fileID: 5933404334640683206, guid: 04d0a4b3b38350b4b8283ad25212862e, type: 3}
+  buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
