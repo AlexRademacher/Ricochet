@@ -142,9 +142,11 @@ public class GunScript : MonoBehaviour
         }
         else if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
         {
-                GameObject winUI = Instantiate(successUI);
-                winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,1f,0);
-                winUI.transform.rotation = player.transform.rotation;
+            GameObject winUI = Instantiate(successUI);
+            winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,1f,0);
+            winUI.transform.rotation = player.transform.rotation;
+
+            GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
         }
         else
         {
