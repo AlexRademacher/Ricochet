@@ -252,9 +252,13 @@ public class GunScript : MonoBehaviour
             {
                 GameObject winUI = Instantiate(successUI);
                 winUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f), player.transform.rotation);
+            
+                GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
             }
             else
                 Debug.LogError("Success UI is missing");
+
+
         }
         else
         {
