@@ -8,6 +8,8 @@ public class GunScript : MonoBehaviour
 {
     [Header("Gun Stats")]
     [SerializeField]
+    private Transform aimPoint;
+    [SerializeField]
     private Transform firePoint;
     [Range(0, 50), SerializeField]
     private float range = 50f;
@@ -44,6 +46,10 @@ public class GunScript : MonoBehaviour
     private GameObject player;
     private float distance = 1.0f;
 
+    [SerializeField]
+    private GameObject holdPoint;
+    private GameObject[] points;
+
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
@@ -65,13 +71,13 @@ public class GunScript : MonoBehaviour
         }
 
         if (!isFiring) {
-            RayCast(new Ray(firePoint.position, firePoint.forward));
+            RayCast(new Ray(aimPoint.position, aimPoint.forward));
         }
 
-        if (!isFiring && Input.GetKeyDown(KeyCode.Space))
+        /*if (!isFiring && Input.GetKeyDown(KeyCode.Space))
         {
             Fire();
-        }
+        }*/
     }
 
     /// <summary>
@@ -82,15 +88,15 @@ public class GunScript : MonoBehaviour
     {
 
         laserLine.positionCount = 2;
-        laserLine.SetPosition(0, firePoint.position);
+        laserLine.SetPosition(0, aimPoint.position);
 
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, range))
+        if (Physics.Raycast(aimPoint.position, aimPoint.forward, out RaycastHit hit, range))
         {
             laserLine.SetPosition(1, hit.point);
         }
         else
         {
-            laserLine.SetPosition(1, firePoint.position + (firePoint.forward * range));
+            laserLine.SetPosition(1, aimPoint.position + (aimPoint.forward * range));
         }
     }
 
@@ -99,16 +105,16 @@ public class GunScript : MonoBehaviour
     /// </summary>
     /// <param name="ray">The Line that we are shooting along</param>
     /// <returns></returns>
-    IEnumerator MultiRayCast(Ray ray)
+    IEnumerator MultiRayCast(Ray ray, int num)
     {
         // remove firing again
         isFiring = true;
 
         // hides Laser Line
-        laserLine.enabled = false;
+        laserLine.enabled = true;
 
         // Uses recursion hitting things and ricocheting back till the maxBounce is reached
-        if (Physics.Raycast(ray, out RaycastHit hit, range) && currBounce <= maxBounce)
+        if (Physics.Raycast(ray, out RaycastHit hit, range) && currBounce <= maxBounce + 1)
         {
             // Updates bounce num
             currBounce++; 
@@ -120,8 +126,13 @@ public class GunScript : MonoBehaviour
             laserLine.positionCount = currBounce + 1;
             laserLine.SetPosition(currBounce, hit.point);
 
+            points[num] = Instantiate(holdPoint, hit.point, transform.rotation);
+
+            Debug.LogWarning("new postion ray is: " + transform.InverseTransformPoint(hit.point));
+            
+
             // Loops
-            StartCoroutine(MultiRayCast(new Ray(hit.point, reflectAngle)));
+            StartCoroutine(MultiRayCast(new Ray(hit.point, reflectAngle), num + 1));
         }
         else
         {
@@ -148,29 +159,53 @@ public class GunScript : MonoBehaviour
             laserLine.positionCount = 1;
             laserLine.SetPosition(0, firePoint.position);
 
+            points = new GameObject[maxBounce + 2];
+            points[0] = firePoint.gameObject;
+
             // Shoots the RayCast out and has it bounce on all of the walls with recursion
-            StartCoroutine(MultiRayCast(new Ray(firePoint.position, firePoint.forward)));
+            StartCoroutine(MultiRayCast(new Ray(firePoint.position, firePoint.forward), 1));
 
             // Setting up spline
             Time.timeScale = 0;
 
             if (bulletPrefab != null)
             {
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); // <--- Transform.postion doesn't work correctly with spline Animate look into setting spline animate in code after instantiate
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 splinePath = bullet.GetComponent<SplineContainer>();
                 splineAnim = bullet.transform.GetChild(0).GetComponent<SplineAnimate>();
 
                 if (splinePath != null)
                 {
-                    Spline spline = splinePath.Spline;
-                    spline.Clear();
+                    splinePath.Spline = new();
+                    //Spline spline = splinePath.Spline;
+                    //spline.Clear();
 
-                    for (int i = 0; i < laserLine.positionCount; i++)
+                    Debug.LogWarning("The amount of laserlines is: " + laserLine.positionCount);
+
+                    if (points != null)
                     {
-                        spline.Add(new BezierKnot(laserLine.GetPosition(i)));
-                    }
+                        //BezierKnot[] rayKnots = new BezierKnot[points.Length];
 
-                    spline.Closed = false;
+                        for (int i = 0; i < points.Length; i++)
+                        {
+                            Vector3 newPos = transform.InverseTransformPoint(points[i].transform.position) * 2.95f;
+
+                            //rayKnots[i] = new BezierKnot(newPos);
+
+                            splinePath.Spline.Add(new BezierKnot(newPos, -30 * Vector3.forward, 30 * Vector3.forward), TangentMode.Linear);
+
+                            //Debug.Log(rayKnots[i]);
+                            Debug.Log(points[i]);
+                                
+                        }
+
+                        //spline.Knots = rayKnots;
+                    }
+                    else
+                        Debug.LogError("Points missing");
+                   
+
+                    //spline.Closed = false;
                     Time.timeScale = 1;
 
                     StartCoroutine(AfterShoot(bullet));
@@ -187,8 +222,9 @@ public class GunScript : MonoBehaviour
     IEnumerator AfterShoot(GameObject bullet)
     {
         // Starts spline
-        if (splineAnim != null)
+        if (splineAnim != null && points != null)
         {
+            splineAnim.enabled = true;
             splineAnim.Play();
             yield return new WaitUntil(() => splineAnim.IsPlaying == false);
         }

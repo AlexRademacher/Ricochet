@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2280956646613715097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8527493953874469854}
+  m_Layer: 0
+  m_Name: AimPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8527493953874469854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280956646613715097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 3.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7388200031468102764}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4193211819333828068
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4193211819333828068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 3.49}
+  m_LocalPosition: {x: 0, y: 0.56, z: 3.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113,6 +144,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d421c3c18826c64ba1518876c565c79, type: 3}
       insertIndex: -1
       addedObject: {fileID: 362588309772901821}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d421c3c18826c64ba1518876c565c79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8527493953874469854}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d421c3c18826c64ba1518876c565c79, type: 3}
       insertIndex: -1
@@ -254,7 +288,7 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4917852626922186450}
         m_TargetAssemblyTypeName: GunScript, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 1
@@ -334,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada7fff60ff731942813406e6c17fa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimPoint: {fileID: 8527493953874469854}
   firePoint: {fileID: 362588309772901821}
   range: 50
   maxBounce: 3
@@ -342,6 +377,7 @@ MonoBehaviour:
   failureUI: {fileID: 4345383450330006127, guid: b4853d74900c29e47b45a9bcfca2ddff, type: 3}
   successUI: {fileID: 2324950236820586465, guid: 03e9f840948533545a001c59590c8551, type: 3}
   player: {fileID: 0}
+  holdPoint: {fileID: 2074247511204778137, guid: 6193d19340729f54b84cb3e61bcb682f, type: 3}
 --- !u!120 &6395064569973412853
 LineRenderer:
   serializedVersion: 2

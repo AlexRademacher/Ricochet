@@ -29,4 +29,12 @@ public class TargetHit : MonoBehaviour
         Instantiate(BrokenVersion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            HitTheTarget();
+        }
+    }
 }
