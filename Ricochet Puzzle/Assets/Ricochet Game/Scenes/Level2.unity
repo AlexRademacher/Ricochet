@@ -766,9 +766,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4917852626922186450, guid: 86a78df10b2d60942922846d7df46536, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1762166584}
+      propertyPath: maxBounce
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7388200031468102764, guid: 86a78df10b2d60942922846d7df46536, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0

@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7112824005124397837, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7402536730348357675, guid: 5bc6e06874f8f754584b88541bd7e64c, type: 3}
       propertyPath: player
       value: 
@@ -1369,11 +1373,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310686396}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1369114691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1680501586, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 1762166581}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1445259439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,10 +2440,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4917852626922186450, guid: 86a78df10b2d60942922846d7df46536, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1369114691}
     - target: {fileID: 7388200031468102764, guid: 86a78df10b2d60942922846d7df46536, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.003
