@@ -376,7 +376,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6325408221617937800, guid: 64d80db2e0f965849bee6d4895c227c0, type: 3}
   failureUI: {fileID: 4345383450330006127, guid: b4853d74900c29e47b45a9bcfca2ddff, type: 3}
   successUI: {fileID: 2324950236820586465, guid: 03e9f840948533545a001c59590c8551, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 7909438480577461974}
   holdPoint: {fileID: 2074247511204778137, guid: 6193d19340729f54b84cb3e61bcb682f, type: 3}
 --- !u!120 &6395064569973412853
 LineRenderer:
