@@ -25,7 +25,7 @@ public class GunScript : MonoBehaviour
     private bool isFiring = false;
 
     [Range(0, 10), SerializeField]
-    private int maxShot = 3;
+    private int maxShot = 5;
     private int currShot = 0;
 
     private Vector3 startPos;
