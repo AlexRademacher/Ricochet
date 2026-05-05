@@ -9,6 +9,7 @@ public class BallDetection : MonoBehaviour
         if (collision.gameObject.tag == "Target")
         {
             collision.gameObject.GetComponent<TargetHit>().HitTheTarget();
+            Debug.Log("WE HIT");
         }
     }
 

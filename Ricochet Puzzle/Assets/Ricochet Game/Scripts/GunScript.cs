@@ -114,7 +114,7 @@ public class GunScript : MonoBehaviour
         laserLine.enabled = true;
 
         // Uses recursion hitting things and ricocheting back till the maxBounce is reached
-        if (Physics.Raycast(ray, out RaycastHit hit, range) && currBounce <= maxBounce + 1)
+        if (Physics.Raycast(ray, out RaycastHit hit, range, 7) && currBounce <= maxBounce)
         {
             // Updates bounce num
             currBounce++; 
@@ -150,7 +150,7 @@ public class GunScript : MonoBehaviour
     public void Fire()
     {
         // Makes a ray that points forward if not shooting already
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, range) && !isFiring)
+        if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, range, 7) && !isFiring)
         {
             // set bounce cound to 0
             currBounce = 0;
