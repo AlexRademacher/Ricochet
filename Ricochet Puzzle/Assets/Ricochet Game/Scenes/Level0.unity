@@ -3662,7 +3662,7 @@ PrefabInstance:
     - target: {fileID: 375922038450790515, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 985205943}
+      objectReference: {fileID: 1493645990}
     - target: {fileID: 645087668733399562, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
       propertyPath: player
       value: 
