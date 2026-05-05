@@ -137,13 +137,13 @@ public class GunScript : MonoBehaviour
         if (currShot > maxShot)
         {
             GameObject failUI = Instantiate(failureUI);
-            failUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,1f,0);
+            failUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0.5f,0);
             failUI.transform.rotation = player.transform.rotation;
         }
         else if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
         {
             GameObject winUI = Instantiate(successUI);
-            winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,1f,0);
+            winUI.transform.position = player.transform.position + (player.transform.forward * distance) - new Vector3(0,0.5f,0);
             winUI.transform.rotation = player.transform.rotation;
 
             GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
