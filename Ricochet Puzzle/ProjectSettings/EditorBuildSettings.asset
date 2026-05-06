@@ -26,19 +26,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ricochet Game/Scenes/Level5.unity
     guid: 176937a7aed99b64690d23cb95a8c3ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ricochet Game/Scenes/Level6.unity
     guid: 996aa0d406f71ae4ab5a9b20bf6b184f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ricochet Game/Scenes/Level7.unity
     guid: f86729ff16ebf6345ae1f93a4ecc8755
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ricochet Game/Scenes/Level8.unity
     guid: 3cf84b29915d74047b56020cf3d22b56
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ricochet Game/Scenes/Level9.unity
     guid: 166d0b669f2041d4cb7c53edb3c4517a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ricochet Game/Scenes/Level10.unity
     guid: 8cefd9f86504df244a1627cea963d524
   m_configObjects:
