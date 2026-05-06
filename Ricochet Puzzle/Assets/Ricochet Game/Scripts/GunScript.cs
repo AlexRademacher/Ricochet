@@ -6,6 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class GunScript : MonoBehaviour
 {
+
+    private GameManager GM;
+
     [Header("Gun Stats")]
     [SerializeField]
     private Transform aimPoint;
@@ -52,6 +55,8 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         laserLine = GetComponent<LineRenderer>();
         interactable = GetComponent<XRBaseInteractable>();
 

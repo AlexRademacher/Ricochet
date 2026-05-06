@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
         #endif
     }
 
+    public void SetTimer(TextMeshProUGUI text)
+    {
+        timerText = text;
+    }
+
     // Start is called before the first frame update
     public void setTimeResult()
     {
