@@ -1737,6 +1737,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4917852626922186450, guid: 86a78df10b2d60942922846d7df46536, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1762166584}
+    - target: {fileID: 4917852626922186450, guid: 86a78df10b2d60942922846d7df46536, type: 3}
       propertyPath: maxBounce
       value: 4
       objectReference: {fileID: 0}
@@ -5515,6 +5519,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2344552731180663799, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1843160830}
+    - target: {fileID: 2344552731180663799, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935066698013668155, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1843160829}
+    - target: {fileID: 8935066698013668155, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createLevelMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5633,6 +5653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2523855580866100706, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7920642253661172897, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7177789
@@ -5678,6 +5702,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
+--- !u!114 &1843160829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 645087668733399562, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
+  m_PrefabInstance: {fileID: 1843160828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd62a14caa1be64d9ce3eee08dbb9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1843160830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 375922038450790515, guid: 6838e387061326f46aa28ad6154c0dc4, type: 3}
+  m_PrefabInstance: {fileID: 1843160828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f6025ebe41d5b47a99260573c36671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1844153675
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class GunScript : MonoBehaviour
     [Range(0, 50), SerializeField]
     private float range = 50f;
 
-    private float gunMoveRange = 1f;
+    private float gunMoveRange = 1.5f;
 
     [Range(0, 5), SerializeField]
     private int maxBounce = 3;
@@ -246,7 +246,7 @@ public class GunScript : MonoBehaviour
             if (successUI)
             {
                 GameObject winUI = Instantiate(successUI);
-                winUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f), player.transform.rotation);
+                winUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, -1, 0), player.transform.rotation);
 
                 GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
             }
@@ -260,7 +260,7 @@ public class GunScript : MonoBehaviour
             if (failureUI != null)
             {
                 GameObject failUI = Instantiate(failureUI);
-                failUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f), player.transform.rotation);
+                failUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, -1, 0), player.transform.rotation);
             }
             else
                 Debug.LogError("Failure UI is missing");
