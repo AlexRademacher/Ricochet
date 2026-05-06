@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class TargetHit : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class TargetHit : MonoBehaviour
         {
             HitTheTarget();
             Debug.Log("WE HIT HARD");
+            SplineAnimate splineAnim = collision.transform.GetComponent<SplineAnimate>();
+            splineAnim.Pause();
         }
     }
 }

@@ -236,7 +236,21 @@ public class GunScript : MonoBehaviour
         currShot++;
 
         // Checks if player lost, hit all targets, or continues shooting
-        if (currShot > maxShot)
+        if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
+        {
+            if (successUI)
+            {
+                GameObject winUI = Instantiate(successUI);
+                winUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f), player.transform.rotation);
+
+                GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
+            }
+            else
+                Debug.LogError("Success UI is missing");
+
+
+        }
+        else if (currShot > maxShot)
         {
             if (failureUI != null)
             {
@@ -245,20 +259,6 @@ public class GunScript : MonoBehaviour
             }
             else
                 Debug.LogError("Failure UI is missing");
-        }
-        else if (GameObject.FindGameObjectsWithTag("Target").Length == 0)
-        {
-            if (successUI)
-            {
-                GameObject winUI = Instantiate(successUI);
-                winUI.transform.SetPositionAndRotation(player.transform.position + (player.transform.forward * distance) - new Vector3(0, 0, 0.5f), player.transform.rotation);
-            
-                GameObject.Find("GameManager").GetComponent<GameManager>().setTimeResult();
-            }
-            else
-                Debug.LogError("Success UI is missing");
-
-
         }
         else
         {

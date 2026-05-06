@@ -372,7 +372,7 @@ MonoBehaviour:
   firePoint: {fileID: 362588309772901821}
   range: 50
   maxBounce: 4
-  maxShot: 8
+  maxShot: 10
   bulletPrefab: {fileID: 6325408221617937800, guid: 64d80db2e0f965849bee6d4895c227c0, type: 3}
   failureUI: {fileID: 4345383450330006127, guid: b4853d74900c29e47b45a9bcfca2ddff, type: 3}
   successUI: {fileID: 2324950236820586465, guid: 03e9f840948533545a001c59590c8551, type: 3}

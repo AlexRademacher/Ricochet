@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3652011956315678642, guid: 0ae343bcb5402ec4789f1fb4a10f0fec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0076254215
@@ -324,11 +328,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada7fff60ff731942813406e6c17fa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimPoint: {fileID: 0}
   firePoint: {fileID: 6690721669221073390}
+  range: 50
+  maxBounce: 3
+  maxShot: 3
   bulletPrefab: {fileID: 621965872036132818, guid: 8e37866704ac2944aa7b9aae3f1952fe, type: 3}
   failureUI: {fileID: 4345383450330006127, guid: b4853d74900c29e47b45a9bcfca2ddff, type: 3}
   successUI: {fileID: 2324950236820586465, guid: 03e9f840948533545a001c59590c8551, type: 3}
   player: {fileID: 0}
+  holdPoint: {fileID: 0}
 --- !u!120 &4803041911815341251
 LineRenderer:
   serializedVersion: 2
